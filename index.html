@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cribs — Sales Training Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4f6f9;
+    --surface: #ffffff;
+    --surface-mid: #eef1f6;
+    --teal: #0f7b6c;
+    --teal-light: #16a085;
+    --teal-pale: #e6f4f2;
+    --gold: #a07828;
+    --gold-light: #c9a84c;
+    --gold-pale: #fdf6e3;
+    --navy: #1a2e45;
+    --text: #1e2d3d;
+    --text-mid: #4a5e72;
+    --text-soft: #7a8fa3;
+    --border: #dde3ec;
+    --border-soft: #eaeff5;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* ── HEADER ── */
+  .hero {
+    background: linear-gradient(135deg, #1a2e45 0%, #1e3d52 60%, #0f3d38 100%);
+    padding: 80px 60px 60px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(15,123,108,0.2) 0%, transparent 70%);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -80px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,76,0.1) 0%, transparent 70%);
+  }
+  .badge {
+    display: inline-block;
+    background: var(--teal);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(38px, 5vw, 62px);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    color: #fff;
+  }
+  .hero h1 span { color: var(--gold-light); }
+  .hero p {
+    color: rgba(255,255,255,0.6);
+    font-size: 16px;
+    max-width: 520px;
+  }
+
+  /* ── PROCESS BAR ── */
+  .process-bar {
+    background: var(--surface);
+    padding: 22px 60px;
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .step-pill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .step-num {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--teal);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 600;
+  }
+  .step-label { font-size: 13px; font-weight: 500; color: var(--text-mid); }
+  .arrow {
+    width: 36px; height: 1px;
+    background: var(--border);
+    margin: 0 12px;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .arrow::after {
+    content: '›';
+    position: absolute;
+    right: -6px; top: -10px;
+    color: var(--text-soft); font-size: 16px;
+  }
+
+  /* ── MAIN CONTENT ── */
+  .content {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 60px 40px;
+  }
+
+  /* ── SECTION ── */
+  .section { margin-bottom: 60px; }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--border-soft);
+  }
+  .section-icon {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--teal), var(--teal-light));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .section-num {
+    font-size: 11px;
+    color: var(--teal);
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+  }
+  .card-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  /* ── CHECKLIST ── */
+  .checklist { list-style: none; }
+  .checklist li {
+    padding: 9px 0 9px 28px;
+    position: relative;
+    color: var(--text-mid);
+    font-size: 14.5px;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist li::before {
+    content: '✓';
+    position: absolute; left: 0;
+    color: var(--teal);
+    font-weight: 700;
+  }
+  .checklist li strong { color: var(--text); }
+
+  /* ── OBJECTION BLOCK ── */
+  .objection-block {
+    background: var(--teal-pale);
+    border: 1px solid rgba(15,123,108,0.18);
+    border-left: 3px solid var(--teal);
+    border-radius: 0 10px 10px 0;
+    padding: 18px 22px;
+    margin-bottom: 12px;
+  }
+  .objection-trigger {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .objection-trigger::before { content: '💬'; font-size: 14px; }
+  .objection-response {
+    font-size: 13.5px;
+    color: var(--text-mid);
+    line-height: 1.65;
+    font-style: italic;
+  }
+  .response-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--teal);
+    display: block;
+    margin-bottom: 6px;
+    font-style: normal;
+  }
+
+  /* ── AAPA BOX ── */
+  .aapa-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .aapa-item {
+    background: linear-gradient(160deg, var(--teal-pale), #f0faf8);
+    border: 1px solid rgba(15,123,108,0.2);
+    border-radius: 10px;
+    padding: 18px 16px;
+    text-align: center;
+  }
+  .aapa-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .aapa-word {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--teal);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* ── 6 STEPS ── */
+  .steps-list { list-style: none; }
+  .step-item {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    gap: 16px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-soft);
+    align-items: start;
+  }
+  .step-item:last-child { border-bottom: none; }
+  .step-circle {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    border: 2px solid var(--gold-light);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gold);
+    flex-shrink: 0;
+    background: var(--gold-pale);
+  }
+  .step-content-title {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .step-content-desc {
+    font-size: 13.5px;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+  .tag {
+    display: inline-block;
+    background: var(--gold-pale);
+    border: 1px solid rgba(160,120,40,0.25);
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-top: 6px;
+  }
+
+  /* ── INTENT GRID ── */
+  .intent-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .intent-card {
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+  .intent-card.low {
+    background: var(--surface-mid);
+    border: 1px solid var(--border);
+  }
+  .intent-card.high {
+    background: var(--teal-pale);
+    border: 1px solid rgba(15,123,108,0.2);
+  }
+  .intent-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .intent-card.low .intent-label { color: var(--text-soft); }
+  .intent-card.high .intent-label { color: var(--teal); }
+  .intent-text { font-size: 13px; color: var(--text-mid); line-height: 1.6; font-style: italic; }
+
+  /* ── FOLLOW UP ATTEMPTS ── */
+  .attempt-list { list-style: none; }
+  .attempt-item {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border-soft);
+    align-items: start;
+  }
+  .attempt-item:last-child { border-bottom: none; }
+  .attempt-badge {
+    background: var(--surface-mid);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 10px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gold);
+  }
+
+  /* ── TIP BOX ── */
+  .tip-box {
+    background: var(--gold-pale);
+    border: 1px solid rgba(160,120,40,0.2);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-top: 14px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .tip-icon { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+  .tip-text { font-size: 13.5px; color: #7a5c1a; line-height: 1.6; }
+  .tip-text strong { color: #5a4010; }
+
+  /* ── FACT FIND GRID ── */
+  .ff-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .ff-item {
+    background: var(--surface-mid);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .ff-emoji { font-size: 22px; }
+  .ff-label { font-size: 14px; font-weight: 500; color: var(--text); }
+
+  /* ── COMPARISON RULES ── */
+  .rule-list { list-style: none; counter-reset: rule-counter; }
+  .rule-item {
+    counter-increment: rule-counter;
+    display: flex;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-soft);
+    font-size: 14px;
+    color: var(--text-mid);
+  }
+  .rule-item:last-child { border-bottom: none; }
+  .rule-item::before {
+    content: counter(rule-counter, decimal-leading-zero);
+    color: var(--gold);
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+    padding-top: 1px;
+  }
+  .rule-item strong { color: var(--text); }
+  .rule-item em { color: var(--teal); font-style: italic; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+    padding: 28px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-soft);
+    font-size: 12px;
+  }
+
+  @media (max-width: 700px) {
+    .hero { padding: 50px 24px 40px; }
+    .process-bar { padding: 18px 24px; }
+    .content { padding: 40px 20px; }
+    .aapa-grid { grid-template-columns: repeat(2,1fr); }
+    .intent-grid { grid-template-columns: 1fr; }
+    .ff-grid { grid-template-columns: 1fr; }
+    footer { padding: 22px 24px; flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="badge">Internal Training Resource</div>
+  <h1>The Cribs<br><span>Sales Playbook</span></h1>
+  <p>A step-by-step guide for brokers — from the first call to a closed application.</p>
+</div>
+
+<!-- PROCESS BAR -->
+<div class="process-bar">
+  <div class="step-pill"><div class="step-num">1</div><div class="step-label">Introduction</div></div>
+  <div class="arrow"></div>
+  <div class="step-pill"><div class="step-num">2</div><div class="step-label">Fact Find</div></div>
+  <div class="arrow"></div>
+  <div class="step-pill"><div class="step-num">3</div><div class="step-label">Product Comparison</div></div>
+  <div class="arrow"></div>
+  <div class="step-pill"><div class="step-num">4</div><div class="step-label">6 Steps to Close</div></div>
+  <div class="arrow"></div>
+  <div class="step-pill"><div class="step-num">5</div><div class="step-label">Follow Up</div></div>
+</div>
+
+<div class="content">
+
+  <!-- SECTION 1 — INTRODUCTION -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">👋</div>
+      <div>
+        <span class="section-num">Step 01</span>
+        <div class="section-title">Introduction</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">What to cover on every opening call</div>
+      <ul class="checklist">
+        <li><strong>Introduce yourself</strong> — your name, company, and why you're calling. Provide call recording advice.</li>
+        <li><strong>Understand the what & the why</strong> — uncover overarching goals (both long-term and short-term).</li>
+        <li><strong>Deliver your value proposition</strong> — how do Cribs' services benefit this customer? What sets us apart from banks and other brokers?</li>
+        <li><strong>Set the agenda</strong> — tell the customer what will happen during this call and what the outcome will be.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Objection Handling Framework — AAPA</div>
+      <div class="aapa-grid">
+        <div class="aapa-item"><span class="aapa-letter">A</span><span class="aapa-word">Acknowledge</span></div>
+        <div class="aapa-item"><span class="aapa-letter">A</span><span class="aapa-word">Agree</span></div>
+        <div class="aapa-item"><span class="aapa-letter">P</span><span class="aapa-word">Provide Info</span></div>
+        <div class="aapa-item"><span class="aapa-letter">A</span><span class="aapa-word">Agenda</span></div>
+      </div>
+
+      <div class="objection-block">
+        <div class="objection-trigger">"I'm busy / in a meeting right now"</div>
+        <div class="objection-response">
+          <span class="response-label">Your response</span>
+          Completely understand, I've called you in the middle of a workday. I wasn't looking to take too much of your time right now — I just wanted to follow up on the research you were doing on our platform. I can call you back at another time, but I just wanted to make sure we could help you out. Were you looking at refinancing or purchasing a property?
+        </div>
+      </div>
+
+      <div class="objection-block">
+        <div class="objection-trigger">"I've already got another mortgage broker"</div>
+        <div class="objection-response">
+          <span class="response-label">Your response</span>
+          That's great to hear. I'm not looking to step on anyone's toes — what we can do is provide a few additional options from our panel of lenders so you can make sure you're proceeding with the right choice. What has your broker offered you so far?
+        </div>
+      </div>
+
+      <div class="objection-block">
+        <div class="objection-trigger">"I think I'm all good for now"</div>
+        <div class="objection-response">
+          <span class="response-label">Your response</span>
+          That's all good — I just wanted to reach out since you came onto our platform recently. Just to double-check: what rate are you sitting on at the moment? I can quickly tell you if we can do something better.
+        </div>
+      </div>
+
+      <div class="objection-block">
+        <div class="objection-trigger">"I was just doing research / checking borrowing power"</div>
+        <div class="objection-response">
+          <span class="response-label">Your response</span>
+          That's all good — glad you were able to use our platform. I just wanted to reach out and see if I could assist with anything. When were you thinking about potentially purchasing a property?
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2 — FACT FIND -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">📋</div>
+      <div>
+        <span class="section-num">Step 02</span>
+        <div class="section-title">Fact Find</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Essential information to collect on the initial call</div>
+      <div class="ff-grid">
+        <div class="ff-item"><span class="ff-emoji">👤</span><span class="ff-label">Customer contact info</span></div>
+        <div class="ff-item"><span class="ff-emoji">🏠</span><span class="ff-label">Property details</span></div>
+        <div class="ff-item"><span class="ff-emoji">💰</span><span class="ff-label">Income</span></div>
+        <div class="ff-item"><span class="ff-emoji">📊</span><span class="ff-label">Liabilities</span></div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-icon">💡</div>
+        <div class="tip-text">On the initial call, keep it to the essentials only. Don't overload the customer — deeper discovery happens in your booked appointment.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3 — PRODUCT COMPARISON -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">📊</div>
+      <div>
+        <span class="section-num">Step 03</span>
+        <div class="section-title">Providing a Solution & Product Comparison</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Comparison process — in order</div>
+      <ol class="rule-list">
+        <li>Complete the <strong>Needs & Objectives</strong> tabs before building the comparison — you must understand the customer's preferences first.</li>
+        <li>Always send a <strong>minimum of 3 products</strong>. The first product must be the cheapest rate, even if it's not your preferred recommendation.</li>
+        <li>Send the link and <strong>wait for the customer to open it</strong> themselves. Guide them through the login process.</li>
+        <li>As you walk through each lender, continuously ask: <em>"What rate can you see?"</em> or <em>"Can you see the repayment?"</em> — this keeps the customer engaged and following along.</li>
+        <li>After reviewing all products, make a <strong>clear recommendation</strong> and explain why the other two options are not the best fit for this customer.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- SECTION 4 — 6 STEPS TO CLOSE -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">🤝</div>
+      <div>
+        <span class="section-num">Step 04</span>
+        <div class="section-title">6 Steps to Close</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <ul class="steps-list">
+        <li class="step-item">
+          <div class="step-circle">1</div>
+          <div>
+            <div class="step-content-title">Pick a Bank</div>
+            <div class="step-content-desc">After your recommendation, ask the customer which lender they prefer. Ensure they tentatively select one — even if they raise an objection. Use AAPA if needed.</div>
+          </div>
+        </li>
+        <li class="step-item">
+          <div class="step-circle">2</div>
+          <div>
+            <div class="step-content-title">Sell Intellectually</div>
+            <div class="step-content-desc">Re-explain the savings clearly. Use the savings calculator where applicable. For purchases, show how extra repayments or an offset/redraw facility accelerates loan payoff.</div>
+          </div>
+        </li>
+        <li class="step-item">
+          <div class="step-circle">3</div>
+          <div>
+            <div class="step-content-title">Sell Emotionally</div>
+            <div class="step-content-desc">Link back to the customer's "why" and build genuine urgency and excitement. Example: <em>"The sooner we get you pre-approved, the sooner you can make an offer and stop paying someone else's mortgage."</em></div>
+          </div>
+        </li>
+        <li class="step-item">
+          <div class="step-circle">4</div>
+          <div>
+            <div class="step-content-title">Gain a Commitment</div>
+            <div class="step-content-desc"><em>"Just to confirm — you're happy to proceed with XYZ Bank as presented. If you change your mind, we can always switch to another lender."</em></div>
+          </div>
+        </li>
+        <li class="step-item">
+          <div class="step-circle">5</div>
+          <div>
+            <div class="step-content-title">VVDR</div>
+            <div class="step-content-desc">Walk through the four pillars needed to progress the application.</div>
+            <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:10px;">
+              <span class="tag">VOI</span>
+              <span class="tag">Valuation</span>
+              <span class="tag">Documents</span>
+              <span class="tag">Referrals</span>
+            </div>
+          </div>
+        </li>
+        <li class="step-item">
+          <div class="step-circle">6</div>
+          <div>
+            <div class="step-content-title">Close with an Agreed Outcome</div>
+            <div class="step-content-desc">Book the BBA within 48 hours. Choose your approach based on customer intent:</div>
+            <div class="intent-grid" style="margin-top:12px;">
+              <div class="intent-card low">
+                <div class="intent-label">Low Intent</div>
+                <div class="intent-text">"If you wish to proceed with XYZ Bank, please upload your documents before our next appointment so I can review servicing and prepare the application."</div>
+              </div>
+              <div class="intent-card high">
+                <div class="intent-label">High Intent</div>
+                <div class="intent-text">"We actually offer same-day submission within 24 hours — could you jump on a quick video call now so we can finalise the details and get your application underway today?"</div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Common objections at close</div>
+
+      <div class="objection-block">
+        <div class="objection-trigger">"I need to talk to my partner first"</div>
+        <div class="objection-response">
+          <span class="response-label">Your response</span>
+          Completely understand — we'd need to sit down together for the video call anyway, so this is just about setting up what next steps would look like for you both. Does XYZ seem like the lender you're leaning towards right now?
+        </div>
+      </div>
+
+      <div class="objection-block">
+        <div class="objection-trigger">"Let me think about it and I'll get back to you"</div>
+        <div class="objection-response">
+          <span class="response-label">Your response</span>
+          No problem — we aren't looking to proceed right now anyway since I'll need your documents, so you'll have time to think. Just so I can show you what those documents look like: does one of the lenders we spoke about stand out more than the other?
+        </div>
+      </div>
+
+      <div class="objection-block">
+        <div class="objection-trigger">"I don't think I'll do anything right now"</div>
+        <div class="objection-response">
+          <span class="response-label">Your response</span>
+          No stress — I know that's a lot of information to take in. Was there anything specific holding you back? I can see we could definitely move forward quickly with the refi or AIP for you.
+        </div>
+      </div>
+
+      <div class="objection-block">
+        <div class="objection-trigger">"Can we push it back a month?"</div>
+        <div class="objection-response">
+          <span class="response-label">Your response</span>
+          Completely understand — that's where we help. We manage the whole process for you from start to finish; we could even have it approved and settled within a month. All you'd need to do right now is upload your ID and pay slips. Would you be free now — or this afternoon — for a quick video call?
+        </div>
+      </div>
+
+      <div class="objection-block">
+        <div class="objection-trigger">"I'm going to wait and save up more"</div>
+        <div class="objection-response">
+          <span class="response-label">Your response</span>
+          I understand — timing can matter. But what's actually holding you back? I've run the numbers and can see you'd be able to enter the market now. We could get you a pre-approval in your back pocket for when you're ready to make an offer.
+        </div>
+      </div>
+
+      <div class="tip-box">
+        <div class="tip-icon">🏠</div>
+        <div class="tip-text"><strong>Low deposit?</strong> Always explore alternatives: Guarantor, Gift, or FHGS.<br><br><strong>Good deposit but not enough for the target property?</strong> Consider a smaller first property to build equity, an investment property, or connecting the customer with a Buyer's Agent to find the right entry point.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5 — FOLLOW UP -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">📞</div>
+      <div>
+        <span class="section-num">Step 05</span>
+        <div class="section-title">Follow Up Process</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Key rules</div>
+      <ul class="checklist">
+        <li>Every follow-up call must have a <strong>purpose</strong> — re-sell the outcome and link back to why the customer came to you.</li>
+        <li>Book the BBA <strong>within 48 hours</strong>. The further out the appointment, the more customer intent drops off.</li>
+        <li>Make a <strong>minimum of 3 contact attempts</strong>, each 1–2 days apart.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">3-Attempt Contact Strategy</div>
+      <ul class="attempt-list">
+        <li class="attempt-item">
+          <div class="attempt-badge">Attempt 1</div>
+          <div>
+            <div class="step-content-title">Call at the time of the BBA</div>
+            <div class="step-content-desc">If no answer, leave a voicemail.</div>
+          </div>
+        </li>
+        <li class="attempt-item">
+          <div class="attempt-badge">Attempt 2</div>
+          <div>
+            <div class="step-content-title">Call again 1–2 days later</div>
+            <div class="step-content-desc">If no answer, leave a voicemail and send an email reminder.</div>
+          </div>
+        </li>
+        <li class="attempt-item">
+          <div class="attempt-badge">Attempt 3</div>
+          <div>
+            <div class="step-content-title">Final attempt</div>
+            <div class="step-content-desc">If no answer, leave a voicemail advising you will now close the file. Let them know they can reach back out by phone or email when they're ready to proceed.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Handling follow-up friction</div>
+
+      <div class="objection-block">
+        <div class="objection-trigger">📁 Documents not yet uploaded</div>
+        <div class="objection-response">
+          <span class="response-label">Your response</span>
+          I can see there are only a couple of items left. Let me re-send you the link now — can you upload while we're on the phone so we can get it out of the way? We want to get your application to the bank ASAP to avoid the queue and lock in your approval.
+        </div>
+      </div>
+
+      <div class="objection-block">
+        <div class="objection-trigger">🤔 Customer still hasn't decided</div>
+        <div class="objection-response">
+          <span class="response-label">Your response</span>
+          As we've discussed, there are definite savings on the table. Which part of the process or which lender is holding you back? [If unresolved after 3 attempts → close lost.]
+        </div>
+      </div>
+
+      <div class="tip-box">
+        <div class="tip-icon">⏰</div>
+        <div class="tip-text"><strong>Build urgency with a deadline:</strong> "I don't want to waste your time with follow-up calls, and I know you don't want to waste mine. If I haven't received your documents by [date], I'll close off your file — you can always reach back out when you have more time."</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div>Cribs — Sales Process Guide</div>
+  <div>Internal use only · Broker Training</div>
+</footer>
+
+</body>
+</html>
